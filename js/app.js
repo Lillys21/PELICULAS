@@ -21,7 +21,10 @@ function ajaxGet(url) {
         for(var i = 0; i<movie.length; i++){ 
             var titulo = movie[i].Title;
             var poster = movie[i].Poster;
-
+            /*if(poster === "N/A"){
+              poster='assets/images/NA4.jpg'
+              ;
+            }*/
             var peli = document.createElement("p");
             var peliTexto = document.createTextNode(titulo);
             peli.appendChild(peliTexto);
