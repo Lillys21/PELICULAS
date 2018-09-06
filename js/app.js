@@ -16,16 +16,19 @@ function ajaxGet(url) {
         var movie = JSON.parse(req.response).Search;
         console.log(movie);
         // Extracción de información del objeto respuesta
-        var nombrePeli = document.getElementById("peliculas");
-        nombrePeli.innerHTML = "";
+        var movieContainer = document.getElementById("movies");
+        var templateUno ="";
+        movieContainer.innerHTML = "";
+        /*var temFinal="";
+        temFinal.html()="";*/
         for(var i = 0; i<movie.length; i++){ 
             var titulo = movie[i].Title;
             var poster = movie[i].Poster;
-            /*if(poster === "N/A"){
+            if(poster === "N/A"){
               poster='assets/images/NA4.jpg'
               ;
-            }*/
-            var peli = document.createElement("p");
+            }
+            /*var peli = document.createElement("p");
             var peliTexto = document.createTextNode(titulo);
             peli.appendChild(peliTexto);
             nombrePeli.appendChild(peli);
@@ -33,8 +36,23 @@ function ajaxGet(url) {
             var imagen = document.createElement("img");
             //imagen =  "<img src='poster'>";   
             imagen.setAttribute("src", poster);   
-            nombrePeli.appendChild(imagen);
-        }
+            nombrePeli.appendChild(imagen);*/
+
+            //CREAR TEMPLATE
+            var template = `
+                          <div class="card-deck col-sm-3 m-2 card contenedor-imagen">
+                          <img class="card-img-top imagen-peli" src="${poster}" alt="peliculas">
+                          <div class="card-body">
+                            <p class="card-text">${titulo}</p>
+                          </div>
+                          </div>
+                          `;
+                          
+                          templateUno+=template   
+          }
+
+          $('#movies').append(templateUno);
+
             //callback(req.responseText);
       } else {
         console.error(req.status + " " + req.statusText);
